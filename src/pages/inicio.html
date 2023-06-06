@@ -14,11 +14,14 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     />
     <title>Venta de Boletos de Autobús</title>
+    <!--SCRIPTS DE Navbar-->
+    <script type="module" src="../components/navbar/navbar.js"></script>
   </head>
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div id="navbar-container"></div>
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="inicio.html">
         <img
           class="border border-info rounded"
@@ -103,7 +106,7 @@
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> -->
 
     <!-- Main content -->
     <div class="container my-4 text-center">
@@ -112,12 +115,10 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-      <p>
-        © 2023 Central de Autobuses Ositos Viajeros. Todos los derechos
-        reservados.
-      </p>
-    </footer>
+    <div id="footer-container"></div>
+
+    <!--SCRIPTS DE Navbar-->
+    <script type="module" src="../components/footer/footer.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
