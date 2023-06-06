@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['correo'] = $correo;
         echo "Inicio de sesión exitoso. Redireccionando a la página de inicio...";
         //redirigir a otra pagina
-         header("Location: ../../../pages/inicio.html");
+         header("Location: ../../../pages/inicio.php");
     } else {
         // Credenciales inválidas
         $mensaje = "Credenciales inválidas. Por favor, intenta nuevamente.";
