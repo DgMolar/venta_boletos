@@ -2,7 +2,7 @@
 fetch("../components/footer/footer.html")
   .then((response) => response.text()) // convierte la respuesta a texto
   .then((data) => {
-    console.log("Cargando el footer...");
+    // console.log("Cargando el footer...");
     // Coloca el contenido del footer en el contenedor del footer
     document.getElementById("footer-container").innerHTML = data;
   })

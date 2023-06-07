@@ -67,12 +67,23 @@ $correoUsuario = $_SESSION['correo'];
       <!-- Viajes encontrados -->
       <div id="viajes-encontrados" class="my-4">
         <h2>Viajes Encontrados</h2>
-        <div class="table-responsive">
-          <table
-            id="tabla-viajes"
-            class="table table-bordered table-striped"
-          ></table>
-        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID Viaje</th>
+              <th>Nombre</th>
+              <th>Dirección</th>
+              <th>Ciudad</th>
+              <th>Fecha Salida</th>
+              <th>Costo</th>
+              <th>Capacidad Asientos</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="resultados-body">
+            <!-- Aquí se imprimirán los resultados -->
+          </tbody>
+        </table>
       </div>
       <!-- FIN  Viajes encontrados -->
       <!-- Formulario completo -->
@@ -128,12 +139,24 @@ $correoUsuario = $_SESSION['correo'];
           <div id="seleccion-asientos" class="my-4">
             <h3>Seleccionar Asientos</h3>
             <div id="lista-asientos"></div>
+            <label for="asiento-seleccionado">Asiento seleccionado:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="asiento-seleccionado"
+              name="asiento-seleccionado"
+              placeholder="Ingrese la Asiento seleccionado"
+            />
           </div>
 
           <!-- Total a pagar y método de pago -->
           <div id="pago" class="my-4">
             <h3>Pago</h3>
             <div id="total-pagar"></div>
+            <label for="total-pago"
+              ><h5>Total a Pagar:</h5>
+              $</label
+            >
             <div class="form-group">
               <label for="metodo-pago">Método de Pago:</label>
               <select class="form-control" id="metodo-pago" name="metodo-pago">

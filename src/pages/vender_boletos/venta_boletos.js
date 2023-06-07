@@ -1,4 +1,5 @@
 import { verFormulario } from "./vender.js";
+import { imprimirDestinos } from "./buscar_destinos_components.js";
 // Función para hacer la solicitud AJAX y mostrar los resultados en la tabla
 function buscarViajes(event) {
   event.preventDefault(); // Evitar la recarga de la página
@@ -26,64 +27,41 @@ function buscarViajes(event) {
     if (xhr.status === 200) {
       // La solicitud fue exitosa
       var viajes = JSON.parse(xhr.responseText);
+      console.log(viajes);
 
       // Obtener el elemento HTML donde se mostrará la tabla
-      var tablaViajes = document.getElementById("tabla-viajes");
-
-      // Limpiar el contenido anterior
-      tablaViajes.innerHTML = "";
+      var tablaViajesDestinos = document.getElementById("resultados-body");
+      //eliminar lo que hay en tablaViajesDestinos.
+      tablaViajesDestinos.innerHTML = "";
 
       if (viajes.length > 0) {
-        // Crear el encabezado de la tabla
-        var encabezadoHTML =
-          "<tr>" +
-          "<th>ID Viaje</th>" +
-          "<th>Nombre</th>" +
-          "<th>Dirección</th>" +
-          "<th>Ciudad</th>" +
-          "<th>Fecha Salida</th>" +
-          "<th>Costo</th>" +
-          "<th>Capacidad Asientos</th>" +
-          "<th>Acción</th>" +
-          "</tr>";
-        tablaViajes.innerHTML += encabezadoHTML;
-
-        // Crear las filas de la tabla con los datos de cada viaje
-        for (var i = 0; i < viajes.length; i++) {
-          var viaje = viajes[i];
-          var filaHTML =
-            "<tr>" +
-            "<td>" +
-            viaje.id_viaje +
-            "</td>" +
-            "<td>" +
-            viaje.nombre +
-            "</td>" +
-            "<td>" +
-            viaje.direccion +
-            "</td>" +
-            "<td>" +
-            viaje.ciudad +
-            "</td>" +
-            "<td>" +
-            viaje.fecha_salida +
-            "</td>" +
-            "<td>" +
-            viaje.costo +
-            "</td>" +
-            "<td>" +
-            viaje.capacidad_asientos +
-            "</td>" +
-            "<td>" +
-            "<button id='select-viaje-Btn' class='btn btn-success' ><i class='bi bi-check2-square'></i></button>" +
-            "</td>" +
-            "</tr>";
-          tablaViajes.innerHTML += filaHTML;
-          console.log("termine de imp");
-          verFormulario();
-        }
+        viajes.forEach((viaje) => {
+          const destinosList = document.createElement("tr");
+          // destinosList.classList.add("col-md-3");
+          destinosList.innerHTML = imprimirDestinos(viaje);
+          tablaViajesDestinos.append(destinosList);
+        });
+        const selectDestinoBtn =
+          document.querySelectorAll(".select-destinoBtn");
+        selectDestinoBtn.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            // Imprimir el número del asiento seleccionado en la consola
+            const idViaje = btn.value;
+            // tablaViajesDestinos.innerHTML = "";
+            console.log("Destino seleccionado: " + idViaje);
+            //insertar valor en input de formulario.
+            // const inputDestino = document.getElementById(
+            //   "destino-seleccionado"
+            // );
+            // inputDestino.value = btn.value;
+            // console.log(parseInt(inputDestino.value));
+            // console.log("El viaje es:", parseInt(idViaje));
+            // //mostrar formulario
+            verFormulario(idViaje);
+          });
+        });
       } else {
-        tablaViajes.innerHTML =
+        tablaViajesDestinos.innerHTML =
           "<tr><td colspan='8' class='alert alert-danger'>No se encontraron viajes para el destino especificado.</td></tr>";
       }
     } else {

@@ -2,7 +2,7 @@
 fetch("../components/navbar/navbar.html")
   .then((response) => response.text()) // convierte la respuesta a texto
   .then((data) => {
-    console.log("Cargando el navbar...");
+    // console.log("Cargando el navbar...");
     // Coloca el contenido del navbar en el contenedor del navbar
     document.getElementById("navbar-container").innerHTML = data;
   })
