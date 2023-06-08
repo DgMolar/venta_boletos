@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['correo'])) {
+  // Si no hay sesión iniciada, redirigir al usuario al formulario de inicio de sesión
+  header("Location: ./auth/login.html");
+  exit; // Terminar el script para evitar que se siga ejecutando
+}
+
+// Si hay sesión iniciada, puedes acceder a $_SESSION['correo'] para obtener el correo del usuario
+$correoUsuario = $_SESSION['correo'];
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="inicio.html">
     <img
@@ -26,13 +39,19 @@
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="#">Boletos</a>
+        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="boletos.php"
+          >Boletos</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="#">Viajes</a>
+        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="viajes.php"
+          >Viajes</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="#">Ventas</a>
+        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="ventjas.php"
+          >Ventas</a
+        >
       </li>
       <li class="nav-item dropdown">
         <a
@@ -65,13 +84,13 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="bi bi-person-circle h4"></i> Usuario
+          <i class="bi bi-person-circle h4"></i>
+            <?php echo $_SESSION['correo']; ?>
         </a>
         <div
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="navbarDropdownProfile"
         >
-          <a class="dropdown-item" href="#">Mi Perfil</a>
           <a class="dropdown-item" href="./auth/logout.php">Cerrar Sesión</a>
         </div>
       </li>

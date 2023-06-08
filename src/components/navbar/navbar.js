@@ -1,5 +1,5 @@
 // Utiliza fetch para obtener el contenido del archivo del navbar
-fetch("../components/navbar/navbar.html")
+fetch("../components/navbar/navbar.php")
   .then((response) => response.text()) // convierte la respuesta a texto
   .then((data) => {
     // console.log("Cargando el navbar...");

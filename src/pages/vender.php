@@ -17,11 +17,10 @@ $sql = "SELECT id_empleado FROM empleados WHERE correo_empleado = '$correoUsuari
 $resultado = mysqli_query($conexion, $sql);
 
 if ($resultado && mysqli_num_rows($resultado) > 0) { 
-  // Obtener el id_empleado 
+  // Obtener el id_empleado.
   $fila = mysqli_fetch_assoc($resultado);
-  $idEmpleado = $fila['id_empleado']; // Hacer lo que necesites con el id_empleado
-}
-?>
+$idEmpleado = $fila['id_empleado']; // Hacer lo que necesites con el id_empleado
+} ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,7 +56,34 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
       <!-- Formulario completo -->
       <div id="formulario-completo" class="my-4 border py-3 px-5">
         <h2>REALIZAR VENTA</h2>
-        <form id="formulario-completo-form">
+        <form id="formulario-completo-form" action="./vender_boletos/generar_venta.php" method="POST">
+          <!-- ID del viaje y empleado -->
+          <div id="datos-viaje" class="my-4">
+            <h3>Datos del Viaje</h3>
+            <div class="form-group">
+              <label for="id-viaje">ID del Viaje:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="input-id-viaje"
+                name="id-viaje"
+                value=""
+                readonly
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="id-empleado">ID del Empleado:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="id-empleado"
+                name="id-empleado"
+                value="<?php echo $idEmpleado; ?>"
+                readonly
+                required
+              />
+            </div>
           <!-- Datos del cliente -->
           <div id="datos-cliente" class="my-4">
             <h3>Datos del Cliente</h3>
@@ -69,6 +95,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                 id="nombre"
                 name="nombre"
                 placeholder="Ingrese su nombre"
+                required
               />
             </div>
             <div class="form-group">
@@ -79,6 +106,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                 id="apellido"
                 name="apellido"
                 placeholder="Ingrese su apellido"
+                required
               />
             </div>
             <div class="form-group">
@@ -89,6 +117,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                 id="correo"
                 name="correo"
                 placeholder="Ingrese su correo electrónico"
+                required
               />
             </div>
             <div class="form-group">
@@ -98,7 +127,9 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                 class="form-control"
                 id="telefono"
                 name="telefono"
-                placeholder="Ingrese su número de teléfono"
+                pattern="[0-9]{10}"
+                placeholder="Ingrese su número de teléfono a 10 dígitos- Ej. 1234567890"
+                required
               />
             </div>
           </div>
@@ -114,6 +145,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
               id="asiento-seleccionado"
               name="asiento-seleccionado"
               placeholder="Ingrese la Asiento seleccionado"
+              required
             />
           </div>
 
@@ -121,10 +153,15 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
           <div id="pago" class="my-4">
             <h3>Pago</h3>
             <div id="total-pagar"></div>
-            <label for="total-pago"
-              ><h5>Total a Pagar:</h5>
-              $</label
-            >
+              <label for="valor-total">Total a Pagar:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="valor-total"
+                name="valor-total"
+                value=""
+                readonly
+              />
             <div class="form-group">
               <label for="metodo-pago">Método de Pago:</label>
               <select class="form-control" id="metodo-pago" name="metodo-pago">
@@ -141,11 +178,18 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                 id="cantidad-pago"
                 name="cantidad-pago"
                 placeholder="Ingrese la cantidad pagada"
+                required
               />
             </div>
             <div class="form-group">
-            <label for="idEmpleado">ID del Empleado</label>
-              <input id="idEmpleado" class="form-control my-2" type="number" value="<?php echo $idEmpleado; ?>" />
+              <label for="cambio-pago">Cambio:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="cambio-pago"
+                name="cambio-pago"
+                readonly
+              />
             </div>
           </div>
 

@@ -27,7 +27,7 @@ function buscarViajes(event) {
       // La solicitud fue exitosa
       var viajes = JSON.parse(xhr.responseText);
       console.log(viajes);
-
+      //mostrar los resultados en el HTML
       // Obtener el elemento HTML donde se mostrará la tabla
       var tablaViajesDestinos = document.getElementById("resultados-body");
       //eliminar lo que hay en tablaViajesDestinos.
