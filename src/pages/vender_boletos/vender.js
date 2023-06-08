@@ -1,4 +1,10 @@
-function verFormulario(idViaje) {
+verFormulario();
+function verFormulario() {
+  //obtener query strings de la url actual
+  const queryParams = new URLSearchParams(window.location.search);
+  let idViaje = parseInt(queryParams.get("idViaje"));
+  let capacidad = parseInt(queryParams.get("capacidad"));
+
   console.log("El viaje es:", parseInt(idViaje));
   // Crear objeto XMLHttpRequest
   var xhr = new XMLHttpRequest();
@@ -12,8 +18,18 @@ function verFormulario(idViaje) {
       var response = JSON.parse(xhr.responseText);
 
       // Obtener los valores de la respuesta
-      var totalAsientos = response.totalAsientos;
-      var asientosOcupados = response.asientosOcupados;
+      let totalAsientos = response.totalAsientos;
+      let asientosOcupados = response.asientosOcupados;
+      // Comprobar si las variables son nulas
+      if (totalAsientos === "" || asientosOcupados === "") {
+        //dar valores por defecto del viaje seleccionado en caso de que no se obtengan los valores
+        totalAsientos = capacidad;
+        console.log("Total de asientos por parametros: ", totalAsientos);
+        console.log(
+          "¡Advertencia! Los valores de totalAsientos o asientosOcupados son nulos."
+        );
+        // return; // Detener el script
+      }
 
       // Utilizar los valores en tu código
       console.log("Total de asientos: ", totalAsientos);

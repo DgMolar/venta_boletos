@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once "../utils/conexion_db.php";
+
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['correo'])) {
   // Si no hay sesión iniciada, redirigir al usuario al formulario de inicio de sesión
@@ -10,6 +12,15 @@ if (!isset($_SESSION['correo'])) {
 
 // Si hay sesión iniciada, puedes acceder a $_SESSION['correo'] para obtener el correo del usuario
 $correoUsuario = $_SESSION['correo'];
+// Realizar una consulta para obtener el id_empleado
+$sql = "SELECT id_empleado FROM empleados WHERE correo_empleado = '$correoUsuario'";
+$resultado = mysqli_query($conexion, $sql);
+
+if ($resultado && mysqli_num_rows($resultado) > 0) { 
+  // Obtener el id_empleado 
+  $fila = mysqli_fetch_assoc($resultado);
+  $idEmpleado = $fila['id_empleado']; // Hacer lo que necesites con el id_empleado
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +37,7 @@ $correoUsuario = $_SESSION['correo'];
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     />
-    <title>Venta de Boletos de Autobús</title>
+    <title>Vender</title>
     <!--SCRIPTS DE Navbar-->
     <script type="module" src="../components/navbar/navbar.js"></script>
   </head>
@@ -43,52 +54,9 @@ $correoUsuario = $_SESSION['correo'];
         Hola,
         <?php echo $_SESSION['correo']; ?>
       </p>
-      <!-- Búsqueda de viajes -->
-      <div id="buscar-viajes" class="my-4">
-        <h2>Buscar Viajes</h2>
-        <form id="buscar-viajes-form">
-          <div class="form-group">
-            <label for="destino">Destino:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="destino"
-              name="destino"
-              placeholder="Ingrese el destino"
-            />
-          </div>
-          <button id="buscar-viajes-btn" type="submit" class="btn btn-primary">
-            Buscar destino
-          </button>
-        </form>
-      </div>
-      <!-- fin  Búsqueda de viajes-->
-
-      <!-- Viajes encontrados -->
-      <div id="viajes-encontrados" class="my-4">
-        <h2>Viajes Encontrados</h2>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>ID Viaje</th>
-              <th>Nombre</th>
-              <th>Dirección</th>
-              <th>Ciudad</th>
-              <th>Fecha Salida</th>
-              <th>Costo</th>
-              <th>Capacidad Asientos</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody id="resultados-body">
-            <!-- Aquí se imprimirán los resultados -->
-          </tbody>
-        </table>
-      </div>
-      <!-- FIN  Viajes encontrados -->
       <!-- Formulario completo -->
-      <div id="formulario-completo" class="my-4 border py-3 px-5 d-none">
-        <h2>Formulario Completo</h2>
+      <div id="formulario-completo" class="my-4 border py-3 px-5">
+        <h2>REALIZAR VENTA</h2>
         <form id="formulario-completo-form">
           <!-- Datos del cliente -->
           <div id="datos-cliente" class="my-4">
@@ -160,8 +128,9 @@ $correoUsuario = $_SESSION['correo'];
             <div class="form-group">
               <label for="metodo-pago">Método de Pago:</label>
               <select class="form-control" id="metodo-pago" name="metodo-pago">
-                <option value="efectivo">Efectivo</option>
-                <option value="tarjeta">Tarjeta de Crédito</option>
+                <option value="1" selected>Efectivo</option>
+                <option value="2">Tarjeta de Crédito</option>
+                <option value="3">Tarjeta de Debito</option>
               </select>
             </div>
             <div class="form-group">
@@ -174,6 +143,10 @@ $correoUsuario = $_SESSION['correo'];
                 placeholder="Ingrese la cantidad pagada"
               />
             </div>
+            <div class="form-group">
+            <label for="idEmpleado">ID del Empleado</label>
+              <input id="idEmpleado" class="form-control my-2" type="number" value="<?php echo $idEmpleado; ?>" />
+            </div>
           </div>
 
           <button type="submit" class="btn btn-primary">Finalizar Venta</button>
@@ -185,7 +158,7 @@ $correoUsuario = $_SESSION['correo'];
     <div id="footer-container"></div>
 
     <!--SCRIPTS DE venta_boletos.js-->
-    <script type="module" src="./vender_boletos/venta_boletos.js"></script>
+    <script type="module" src="./vender_boletos/vender.js"></script>
     <!--SCRIPTS DE footer-->
     <script type="module" src="../components/footer/footer.js"></script>
     <!--SCRIPTS DE LIBRERIAS-->

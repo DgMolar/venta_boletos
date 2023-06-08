@@ -1,4 +1,3 @@
-import { verFormulario } from "./vender.js";
 import { imprimirDestinos } from "./buscar_destinos_components.js";
 // Función para hacer la solicitud AJAX y mostrar los resultados en la tabla
 function buscarViajes(event) {
@@ -40,25 +39,6 @@ function buscarViajes(event) {
           // destinosList.classList.add("col-md-3");
           destinosList.innerHTML = imprimirDestinos(viaje);
           tablaViajesDestinos.append(destinosList);
-        });
-        const selectDestinoBtn =
-          document.querySelectorAll(".select-destinoBtn");
-        selectDestinoBtn.forEach((btn) => {
-          btn.addEventListener("click", function () {
-            // Imprimir el número del asiento seleccionado en la consola
-            const idViaje = btn.value;
-            // tablaViajesDestinos.innerHTML = "";
-            console.log("Destino seleccionado: " + idViaje);
-            //insertar valor en input de formulario.
-            // const inputDestino = document.getElementById(
-            //   "destino-seleccionado"
-            // );
-            // inputDestino.value = btn.value;
-            // console.log(parseInt(inputDestino.value));
-            // console.log("El viaje es:", parseInt(idViaje));
-            // //mostrar formulario
-            verFormulario(idViaje);
-          });
         });
       } else {
         tablaViajesDestinos.innerHTML =
