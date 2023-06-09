@@ -6,7 +6,7 @@ function imprimirDestinos({ id_destino, nombre, direccion, ciudad }) {
         <td>${direccion}</td>
         <td>${ciudad}</td>
         <td>
-          <button class='btn btn-warning' onclick="location.href='./imprimir_boleto.php?idViaje=${id_destino}'">
+          <button class='btn btn-warning' onclick="location.href='./modificar_destino.php?idDestino=${id_destino}'">
             Modificar
           </button>
         </td>

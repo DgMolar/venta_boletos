@@ -13,7 +13,7 @@ function imprimirAutobuses({
         <td>${estado}</td>
         <td>${capacidad_asientos}</td>
         <td>
-          <button class='btn btn-warning' onclick="location.href='./imprimir_boleto.php?idViaje=${id_autobus}'">
+          <button class='btn btn-warning' onclick="location.href='./modificar_autobus.php?idAutobus=${id_autobus}'">
             Modificar
           </button>
         </td>

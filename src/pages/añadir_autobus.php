@@ -43,7 +43,7 @@ $correoUsuario = $_SESSION['correo'];
           <div
             id="formularioContainer"
             class="border p-5">
-            <form action="guardar_registro.php" method="POST">
+            <form action="./autobuses/añadir_autobus.php" method="POST">
               <div class="form-group">
                 <label for="placa">Placa</label>
                 <input type="text" class="form-control" id="placa" name="placa" placeholder="ABC123" required />

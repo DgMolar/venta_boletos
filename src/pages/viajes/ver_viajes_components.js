@@ -19,7 +19,7 @@ function imprimirViajes({
         <td>${placa}</td>
         <td>${capacidad_asientos}</td>
         <td>
-          <button class='btn btn-warning' onclick="location.href='./imprimir_boleto.php?idViaje=${id_viaje}'">
+          <button class='btn btn-warning' onclick="location.href='./modificar_viaje.php?idViaje=${id_viaje}'">
             Modificar
           </button>
         </td>

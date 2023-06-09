@@ -43,23 +43,23 @@ $correoUsuario = $_SESSION['correo'];
           <div
             id="formularioContainer"
             class="border p-5">
-            <form action="guardar_registro.php" method="POST">
-                <div class="form-group">
-                  <label for="nombre">Nombre de destino</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Playa del Carmen" required />
-                </div>
-                <div class="form-group">
-                  <label for="direccion">Dirección</label>
-                  <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Avenida Landana #345 Lote 12" required />
-                </div>
-                <div class="form-group">
-                  <label for="ciudad">Ciudad</label>
-                  <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Quintana Roo" required />
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-success">Agregar</button>
-                </div>
-              </form>
+            <form action="./destinos/añadir_destino.php" method="POST">
+              <div class="form-group">
+                <label for="nombre">Nombre de destino</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Playa del Carmen" required />
+              </div>
+              <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Avenida Landana #345 Lote 12" required />
+              </div>
+              <div class="form-group">
+                <label for="ciudad">Ciudad</label>
+                <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Quintana Roo" required />
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success">Agregar</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
