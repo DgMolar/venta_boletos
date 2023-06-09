@@ -35,24 +35,44 @@ $correoUsuario = $_SESSION['correo'];
     <!-- Navbar -->
     <div id="navbar-container"></div>
 
-    <!-- Main content -->
-    <div class="container my-4 text-center">
-    <p>
+      <div class="container">
+        <div class="text-center mt-5 mb-4"><p>
         Hola,
         <?php echo $_SESSION['correo']; ?>
-      </p>  
-    <h1>Bienvenido al registro de boletos</h1>
-      <!-- Aquí puedes agregar el contenido principal de tu aplicación -->
-      <!-- Otro contenido específico para usuarios autenticados -->
+      </p>
+      <h1>Bienvenido al registro de boletos</h1>
     </div>
+        <div class="row">
+          <div class="col">
+            <table class="table table-striped table-hover table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">ID Boletos</th>
+                  <th scope="col">ID Viaje</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Destino</th>
+                  <th scope="col">Asiento</th>
+                  <th scope="col">Empleado</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="tablaResultados"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
     <!-- Footer -->
     <div id="footer-container"></div>
 
+    <!--SCRIPTS DE JS-->
+    <script type="module" src="./boletos/ver_boletos.js"></script>
+
     <!--SCRIPTS DE Navbar-->
     <script type="module" src="../components/footer/footer.js"></script>
     <!--SCRIPTS DE LIBRERIAS-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </body>

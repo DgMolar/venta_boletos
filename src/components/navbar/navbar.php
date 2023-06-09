@@ -44,12 +44,7 @@ $correoUsuario = $_SESSION['correo'];
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="viajes.php"
-          >Viajes</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="ventjas.php"
+        <a class="nav-link btn btn-info px-4 mx-1 btn-lg" href="ventas.php"
           >Ventas</a
         >
       </li>
@@ -63,9 +58,27 @@ $correoUsuario = $_SESSION['correo'];
           aria-haspopup="true"
           aria-expanded="false"
         >
+          Viajes
+        </a>
+        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownReports">
+          <a class="dropdown-item" href="./ver_viajes.php">Ver Viajes</a>
+          <a class="dropdown-item" href="./ver_destinos.php">Ver Destinos</a>
+          <a class="dropdown-item" href="./ver_autobuses.php">Ver Autobuses</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle btn btn-info px-4 mx-1 btn-lg"
+          href="#"
+          id="navbarDropdownReports"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Reportes
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownReports">
+        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownReports">
           <a class="dropdown-item" href="#">Reporte 1</a>
           <a class="dropdown-item" href="#">Reporte 2</a>
           <a class="dropdown-item" href="#">Reporte 3</a>
