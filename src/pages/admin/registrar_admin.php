@@ -49,7 +49,7 @@ $conexion->close();
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <h1 class="navbar-brand text-center mx-auto" style="font-size: 40px">
-          REGISTRO DE EMPLEADOS
+          REGISTRO DE ADMINISTRADORES
         </h1>
       </div>
     </nav>
@@ -69,16 +69,16 @@ $conexion->close();
             </div>
             <div class="card-body">
               <!--FORMULARIO-->
-              <form id="register-form" action="registrar/registrar.php" method="post">
-                <!--NOMBRE DE EMPLEADO-->
+              <form id="register-form" action="registrar/registrar_admin.php" method="post">
+                <!--NOMBRE DE ADMINISTRADOR-->
                 <div class="form-group text-secondary">
-                  <label for="nombre-empleado">Nombre de empleado:</label>
-                  <input type="text" class="form-control" id="nombre-empleado" name="nombre-empleado" placeholder="Juan" required />
+                  <label for="nombre-administrador">Nombre de administrador:</label>
+                  <input type="text" class="form-control" id="nombre-administrador" name="nombre-administrador" placeholder="Juan" required />
                 </div>
-                <!--APELLIDO DE EMPLEADO-->
+                <!--APELLIDO DE ADMINISTRADOR-->
                 <div class="form-group text-secondary">
-                  <label for="apellido-empleado">Apellido de empleado:</label>
-                  <input type="text" class="form-control" id="apellido-empleado" name="apellido-empleado" placeholder="Pérez" required />
+                  <label for="apellido-administrador">Apellido de administrador:</label>
+                  <input type="text" class="form-control" id="apellido-administrador" name="apellido-administrador" placeholder="Pérez" required />
                 </div>
                 <!--CORREO ELECTRÓNICO-->
                 <div class="form-group text-secondary">
@@ -95,23 +95,12 @@ $conexion->close();
                   <label for="password">Confirme Contraseña:</label>
                   <input type="password" class="form-control" id="password-confirm" name="password-confirm" placeholder="Contraseña" required />
                 </div>
-                <!--PUESTO-->
-                <div class="form-group text-secondary">
-                  <label for="puesto">Puesto:</label>
-                  <select class="form-control" id="puesto" name="puesto" required>
-                    <option value="" selected disabled>Selecciona un puesto</option>
-                    <?php foreach ($puestos as $id_puesto => $nombre_puesto) { ?>
-                    <option value="<?php echo $id_puesto; ?>"><?php echo $nombre_puesto; ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
                 <div id="validationErrors" class="container text-danger text-center"></div>
                 <!--BOTON SUBMIT-->
                 <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-primary mt-4">Registrar</button>
                 </div>
               </form>
-              
             </div>
           </div>
         </div>
@@ -123,7 +112,7 @@ $conexion->close();
       <p>© 2023 Venta de Boletos de Autobús. Todos los derechos reservados.</p>
     </footer>
 
-    <script type="module" src="registrar/registrar.js"></script>
+    <script type="module" src="registrar/registrar_admin.js"></script>
     <!--SCRIPTS DE LIBRERIAS-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

@@ -59,6 +59,9 @@ $correoUsuario = $_SESSION['correo'];
               </thead>
               <tbody id="tablaResultados"></tbody>
             </table>
+            <div class="text-center">
+              <button class="btn btn-primary" onclick="window.print()">Imprimir</button>
+            </div>
           </div>
         </div>
       </div>

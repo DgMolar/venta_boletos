@@ -5,37 +5,47 @@ require_once "../../utils/conexion_db.php";
 $fechaInicio = $_GET['fechaInicio'];
 $fechaFin = $_GET['fechaFin'];
 
-// Obtener el parámetro de ordenamiento
-$ordenamiento = $_GET['ordenamiento'];
-
 // Escapar las variables para evitar inyección de SQL
 $fechaInicio = $conexion->real_escape_string($fechaInicio);
 $fechaFin = $conexion->real_escape_string($fechaFin);
-$ordenamiento = $conexion->real_escape_string($ordenamiento);
 
-// Construir la consulta SQL con la cláusula WHERE y ORDER BY
-$query = "CALL venta_boletos.obtenerInformacionVentas('$fechaInicio', '$fechaFin', '$ordenamiento');";
-$result = $conexion->query($query);
+// Construir la consulta SQL para obtener el total de ventas
+$queryTotalVentas = "SELECT venta_boletos.CalcularTotalVentas('$fechaInicio', '$fechaFin') AS totalVentas";
+$resultTotalVentas = $conexion->query($queryTotalVentas);
 
-// Verifica si se obtuvieron resultados
-if ($result->num_rows > 0) {
-    // Crea un objeto para almacenar los datos
+// Verificar si se obtuvo el resultado
+if ($resultTotalVentas) {
+    $rowTotalVentas = $resultTotalVentas->fetch_assoc();
+    $totalVentas = $rowTotalVentas['totalVentas'];
+
+    // Construir el objeto JSON para devolver los resultados
     $datos = new stdClass();
+    $datos->totalVentas = $totalVentas;
 
-    // Crea una propiedad "resultados" y almacena los datos como un array en esa propiedad
-    $datos->resultados = array();
+    // Obtener los resultados de las ventas
+    $queryVentas = "CALL venta_boletos.obtenerInformacionVentas('$fechaInicio', '$fechaFin', '')";
+    $resultVentas = $conexion->query($queryVentas);
 
-    // Itera sobre los resultados y almacena cada fila en el array de resultados
-    while ($row = $result->fetch_assoc()) {
-        $datos->resultados[] = $row;
+    // Verificar si se obtuvieron resultados de las ventas
+    if ($resultVentas->num_rows > 0) {
+        $datos->resultados = array();
+
+        // Iterar sobre los resultados y almacenar cada fila en el array de resultados
+        while ($rowVentas = $resultVentas->fetch_assoc()) {
+            $datos->resultados[] = $rowVentas;
+        }
+    } else {
+        // No se encontraron resultados de ventas
+        $datos->resultados = array();
     }
 
-    // Convierte el objeto a formato JSON y lo imprime
+    // Convertir el objeto a formato JSON y devolverlo
     echo json_encode($datos);
 } else {
-    echo "No se encontraron resultados.";
+    // Error en la consulta SQL del total de ventas
+    echo "Error al obtener el total de ventas.";
 }
 
-// Cierra la conexión a la base de datos
+// Cerrar la conexión a la base de datos
 $conexion->close();
 ?>

@@ -12,7 +12,7 @@ if (!isset($_SESSION['correo'])) {
 $correoUsuario = $_SESSION['correo'];
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="inicio.html">
+  <a class="navbar-brand" href="inicio.php">
     <img
       class="border border-info rounded"
       src="../images/logo.jpg"
@@ -64,25 +64,6 @@ $correoUsuario = $_SESSION['correo'];
           <a class="dropdown-item" href="./ver_viajes.php">Ver Viajes</a>
           <a class="dropdown-item" href="./ver_destinos.php">Ver Destinos</a>
           <a class="dropdown-item" href="./ver_autobuses.php">Ver Autobuses</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle btn btn-info px-4 mx-1 btn-lg"
-          href="#"
-          id="navbarDropdownReports"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Reportes
-        </a>
-        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownReports">
-          <a class="dropdown-item" href="#">Reporte 1</a>
-          <a class="dropdown-item" href="#">Reporte 2</a>
-          <a class="dropdown-item" href="#">Reporte 3</a>
-          <a class="dropdown-item" href="#">Reporte 4</a>
         </div>
       </li>
     </ul>

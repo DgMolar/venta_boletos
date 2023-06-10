@@ -32,6 +32,13 @@ $("#filtroForm").submit(function (event) {
         var filaHTML = imprimirVentas(row);
         $("#tablaResultados").append(filaHTML);
       });
+
+      // Verificar si existe el total de ventas en el objeto JSON
+      if (data.hasOwnProperty("totalVentas")) {
+        var totalVentas = data.totalVentas;
+        var resultadoHTML = `<div class="text-center mt-3 h5">Total de ventas: $${totalVentas}</div>`;
+        $("#tablaResultados").after(resultadoHTML);
+      }
     },
     error: function (xhr, status, error) {
       console.error(error);
