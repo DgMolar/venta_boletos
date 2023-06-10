@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //alerta de inicio de sesion
         echo "<script>alert('Inicio de sesión exitoso. Redireccionando a la página de inicio...');</script>";
         //redirigir a otra pagina
-         header("Location: ../../../pages/inicio.php");
+         header("Location: ../../../pages/admin/inicio.php");
     } else {
         // Credenciales inválidas
         $mensaje = "Credenciales inválidas. Por favor, intenta nuevamente.";
